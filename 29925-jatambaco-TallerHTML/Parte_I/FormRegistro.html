@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>LOGISTICA</title>
+    <script type="text/javascript">
+      function mostrarOcultarInfo(opcion) {
+        var divInfo = document.getElementById('confi');
+        var botonEnviar = document.getElementById('btnEnviarDatos');
+        
+        if(opcion == 'propietario') {
+          divInfo.style.display = "none";
+          botonEnviar.disabled = false;
+        } else if(opcion == 'tercero') {
+          divInfo.style.display = "";
+          botonEnviar.disabled = true;
+        }
+      }
+      
+      // Inicializar el botón como deshabilitado al cargar la página
+      window.onload = function() {
+        document.getElementById('btnEnviarDatos').disabled = true;
+      }
+    </script>
+  </head>
+  <body>
+    <form action="CodigoNuevo/Parte I/guardarDireccion.php" method="POST">
+       <fieldset>
+         <legend>DIRECCION DE ENVIO</legend>
+         Calle Principal <br>
+         <input type="text" name="txtPrincipal" value="">
+         <br><br>
+         Transversal<br>
+         <input type="text" name="txtTransversal" value="">
+
+		<br><br>
+		    <input type="radio" name="chbEntrega" value="PROPIETARIO" onclick="mostrarOcultarInfo('propietario')"> Entrega al propietario.<br>
+        <input type="radio" name="chbEntrega" value="TERCERO" onclick="mostrarOcultarInfo('tercero')"> Entrega a un tercero.
+
+         <br><br>
+         Cantones: <select  name="cmbCantones">
+		      <optgroup label="PICHINCHA">
+					<option value="Quito">Quito</option>
+					<option value="Rumiñahui">Rumiñahui</option>
+					<option value="Mejia">Mejia</option>
+             </optgroup>
+
+			 <optgroup label="GUAYAS">
+					<option value="Guayaquil">Guayaquil</option>
+					<option value="Santa Elena">Santa Elena</option>
+					<option value="Salinas">Salinas</option>
+             </optgroup>
+
+         </select>
+
+         <br><br>
+           <input type="submit" name="SubmitDireccion" id="btnEnviarDatos" value="ENVIAR DATOS">
+       </fieldset>
+
+	      <br>
+        <div id="confi" style="display: none;">
+       <fieldset>
+         <legend>INFORMACIÓN CONFIDENCIAL</legend>
+         Código Postal:
+         <input type="password" name="pswCodigoPostal" value="">
+
+		       <br><br>
+         Referencia de la Dirección:<br>
+         <textarea name="Mensaje" rows="3" cols="30" id="Mensaje"></textarea><br>
+         <br>
+           <input type="submit" name="SubmitConfidencial" value="Guardar">
+       </fieldset>
+      </div>
+    </form>
+    <br><br>
+    <a href="../index.html">Regresar</a>
+  </body>
+</html>
